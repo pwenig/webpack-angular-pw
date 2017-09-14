@@ -1,18 +1,19 @@
-import {Component} from '@angular/core';
-import {Http} from '@angular/http';
+import {Component, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 
+@Injectable()
 export class MountainService {
 
-  results: string[];
+  results: any = [];
 
-  constructor(private http: Http){}
+  constructor(private http: HttpClient){}
 
   getMountains() {
     this.http.get('/mountains').subscribe(data => {
 
-      this.results = data['results'];
-      console.log('SERVICE', this.results);
+      this.results = data;
+      console.log('SERVICE', data);
     
     });
 
